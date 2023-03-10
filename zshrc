@@ -1,17 +1,16 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-alias mop='sudo snap get microstack config.credentials.keystone-password'
-alias  up="sudo apt update && sudo apt upgrade -y"
-alias helm="microk8s helm"
-alias kctl="microk8s kubectl"
+alias clone="git clone"
+alias pip="pip3"
+alias python="python3"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="ys"
-
+ZSH_THEME="dst"
+alias docker="DOCKER_BUILDKIT=1 docker"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -72,12 +71,20 @@ ZSH_THEME="ys"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git
+	 macos
+	 kubectl
+	 helm
+	 dotenv
+	 golang
+	 python
+	 zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
+export PATH=$PATH:~/go/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -101,3 +108,23 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/justyntemme/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/justyntemme/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/Users/justyntemme/mambaforge/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/justyntemme/mambaforge/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/Users/justyntemme/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/Users/justyntemme/mambaforge/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
