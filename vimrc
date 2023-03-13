@@ -1,6 +1,8 @@
 autocmd VimEnter * NERDTree | wincmd p
 syntax on
-let g:NERDTreeWinSize = 12
+nmap <F6> :NERDTreeToggle<CR>
+let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinSize = 25
 set bg=dark
 set hidden
 let g:go_highlight_structs = 1 
