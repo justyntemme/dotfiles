@@ -1,6 +1,9 @@
+" Enable filetype plugins 
+filetype plugin on
 autocmd VimEnter * NERDTree | wincmd p
 syntax on
 nmap <F6> :NERDTreeToggle<CR>
+" REplace gofmt with goimports
 let g:go_fmt_command = "goimports"
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 25
