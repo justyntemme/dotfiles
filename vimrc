@@ -1,6 +1,7 @@
 autocmd VimEnter * NERDTree | wincmd p
 syntax on
 nmap <F6> :NERDTreeToggle<CR>
+let g:go_fmt_command = "goimports"
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 25
 set bg=dark
