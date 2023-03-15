@@ -1,4 +1,6 @@
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 set autowrite
 filetype plugin on
 set backspace=indent,eol,start
