@@ -2,6 +2,7 @@
 local function open_nvim_tree()
 
   -- open the tree
+  -- lvim.builtin.nvimtree.open()
   require("nvim-tree.api").tree.open()
 end
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
@@ -22,7 +23,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.plugins = {
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
-   { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} },
+   { "rcarriga/nvim-dap-ui", Dependencies = {"mfussenegger/nvim-dap"} },
 }
 
 ------------------------
