@@ -11,7 +11,27 @@
 # Tip: Looking for a nice color? Here's a one-liner to print colormap.
 #
 #   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
-
+# background #282420 (Dark Gray)
+# foreground #e5c6a8 (Beige)
+# cursor #f6f6ec (Light Gray)
+# selection_background #111417 (Black)
+# color0 #111417 (Black)
+# color8 #665e54 (Dark Gray)
+# color1 #c84134 (Red)
+# color9 #ff6459 (Light Red)
+# color2 #84c44b (Green)
+# color10 #97e035 (Light Green)
+# color3 #f4ae2e (Yellow)
+# color11 #dfd561 (Light Yellow)
+# color4 #1397b9 (Blue)
+# color12 #5ed9ff (Light Blue)
+# color5 #d0623c (Orange)
+# color13 #ff9168 (Light Orange)
+# color6 #4f9452 (Cyan)
+# color14 #83ef88 (Light Cyan)
+# color7 #e5c5a9 (Light Beige)
+# color15 #f6f6ec (Light Gray)
+# selection_foreground #282420 (Dark Gray)
 # Temporarily change options.
 'builtin' 'local' '-a' 'p10k_config_opts'
 [[ ! -o 'aliases'         ]] || p10k_config_opts+=('aliases')
