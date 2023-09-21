@@ -1,6 +1,7 @@
+lvim.colorscheme = "habamax"
 -- Command to stat nvimTree on open
 local function open_nvim_tree()
-
+lvim.buildin.leetcode_filesolution_filetype = "golang"
   -- open the tree
   -- lvim.builtin.nvimtree.open()
   require("nvim-tree.api").tree.open()
@@ -22,6 +23,7 @@ lvim.builtin.treesitter.ensure_installed = {
 ------------------------
 lvim.plugins = {
   "olexsmir/gopher.nvim",
+  "ianding1/leetcode.vim",
   "leoluz/nvim-dap-go",
    { "rcarriga/nvim-dap-ui", Dependencies = {"mfussenegger/nvim-dap"} },
 }
@@ -79,10 +81,10 @@ end)
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "gopls" })
 
 local lsp_manager = require "lvim.lsp.manager"
-lsp_manager.setup("golangci_lint_ls", {
-  on_init = require("lvim.lsp").common_on_init,
-  capabilities = require("lvim.lsp").common_capabilities(),
-})
+-- lsp_manager.setup("golangci_lint_ls", {
+--   on_init = require("lvim.lsp").common_on_init,
+--   capabilities = require("lvim.lsp").common_capabilities(),
+-- })
 
 lsp_manager.setup("gopls", {
   on_attach = function(client, bufnr)
