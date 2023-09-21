@@ -1,7 +1,8 @@
 lvim.colorscheme = "habamax"
 -- Command to stat nvimTree on open
 local function open_nvim_tree()
-lvim.builtin.leetcode_filesolution_filetype = "golang"
+vim.g.leetcode_filesolution_filetype = "golang"
+vim.g.leetcode_browser = "firefox"
   -- open the tree
   -- lvim.builtin.nvimtree.open()
   require("nvim-tree.api").tree.open()
