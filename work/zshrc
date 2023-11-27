@@ -81,12 +81,10 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+ssh-add ~/.ssh/id_rsa
+ssh-add ~/.ssh/personal_id_rsa
 
-export PC_IDENTITY='90cf9a99-eb1a-4084-acaa-7b4f33c966a9'
-export PC_SECRET='1mdxXUFJWSQiEsPEKnJG4BaynMU='
-export PC_URL='https://api0.prismacloud.io'
-#export REQUESTS_CA_BUNDLE=/Users/jtemme/Documents/code/_.cloud.twistlock.com.cer
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 export PATH=$PATH:/Users/jtemme/.cargo/bin:/Users/jtemme/.local/bin
 source /Users/jtemme/.py/default/bin/activate
