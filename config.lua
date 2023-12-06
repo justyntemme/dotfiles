@@ -1,13 +1,10 @@
-lvim.colorscheme = "habamax"
+lvim.colorscheme = "catppuccin-frappe"
 -- Command to stat nvimTree on open
-local function open_nvim_tree()
 vim.g.leetcode_solution_filetype = "golang"
 vim.g.leetcode_browser = "firefox"
   -- open the tree
   -- lvim.builtin.nvimtree.open()
-  require("nvim-tree.api").tree.open()
-end
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+--vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- Toggle terminal with t
 lvim.builtin.which_key.mappings["t"] = { "<cmd>ToggleTerm direction=vertical size=50<CR>", "Terminal" }
 ------------------------
@@ -24,7 +21,7 @@ lvim.builtin.treesitter.ensure_installed = {
 ------------------------
 lvim.plugins = {
   "olexsmir/gopher.nvim",
-  "ianding1/leetcode.vim",
+  "catppuccin/nvim",
   "leoluz/nvim-dap-go",
    { "rcarriga/nvim-dap-ui", Dependencies = {"mfussenegger/nvim-dap"} },
 }
