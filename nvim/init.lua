@@ -25,11 +25,8 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 
 spec ={ -- add your plugins here
-	{"nvim-treesitter/nvim-treesitter",
-		opts = {
-			highlight = {enable = true}
-		}
-	},
+	{"neovim/nvim-lspconfig"}, 
+	{"nvim-treesitter/nvim-treesitter"},
 	{ "catppuccin/nvim", 
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
     		priority = 1000, -- make sure to load this before all the other start plugins
@@ -40,9 +37,12 @@ spec ={ -- add your plugins here
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
+  
+
   install = { colorscheme = { "catppuccin-frappe" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
-
+  highlight = { enabled = true},
 }
 })
+require'lspconfig'.pyright.setup{}
