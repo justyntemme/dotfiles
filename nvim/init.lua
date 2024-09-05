@@ -25,8 +25,10 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 
 spec ={ -- add your plugins here
-	{"neovim/nvim-lspconfig"}, 
-	--{"nvim-treesitter/nvim-treesitter"},
+	{"neovim/nvim-lspconfig"},
+	{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+	{ import = "lazyvim.plugins.extras.lang.python" },
+--	{"nvim-treesitter/nvim-treesitter"},
 	{ "catppuccin/nvim", 
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
     		priority = 1000, -- make sure to load this before all the other start plugins
