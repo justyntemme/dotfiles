@@ -44,32 +44,44 @@
       };
       
 
-      homebrew.enable = true;
-      homebrew.casks = [
+      homebrew = {
+        enable = true;
+        onActivation = {
+          autoUpdate = true;
+          cleanup = "uninstall";
+          upgrade = true;
+        };
+        casks = [
           "cocoapods"
           "visual-studio-code"
           "postman"
           "android-platform-tools"
+          "firefox"
+          "google-chrome"
+          "kitty"
+          "notion"
         ];
 
-      homebrew.brews = [
-            "zsh-autosuggestions"
-            "tailscale"
-            "imagemagick"
-            "rust"
-            "sqlite"
-            "python"
-            "gnupg"
-            "go"
-            "gcc"
-            "node"
-            "llvm"
-            "neovim"
-            "cmake"
-            "tree-sitter"
-            "zsh"
-          
-        ];
+        brews = [
+              "zsh-autosuggestions"
+              "tailscale"
+              "imagemagick"
+              "rust"
+              "sqlite"
+              "python"
+              "gnupg"
+              "git"
+              "go"
+              "gcc"
+              "node"
+              "llvm"
+              "neovim"
+              "cmake"
+              "tree-sitter"
+              "zsh"
+          ];
+
+      };
 
     };
 
