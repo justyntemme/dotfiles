@@ -5,10 +5,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    shell-config.url = "github:justyntemme/dotfiles";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, shell-config, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, ... }:
   let
     
     configuration = { pkgs, ... }: {
@@ -17,7 +16,7 @@
        
 
       environment.systemPackages = with pkgs;
-        [ neofetch vim git wget curl];
+        [ neofetch vim git wget curl zsh-powerlevel10k];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -101,7 +100,10 @@
     darwinPackages = self.darwinConfigurations."earth".pkgs;
   
     environment.systemPackages = [ 
-      shell-config.packages.aarch64-darwin.shellConfig
       ];
+
+    fonts.packages = [
+    "fira-code-nerdfont"
+    ];
     };
 }
