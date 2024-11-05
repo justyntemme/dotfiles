@@ -24,6 +24,11 @@
           destination = "/Users/${builtins.getEnv "USER"}/.zshrc";
           text = builtins.readFile "${repository}/zshrc";
         })
+        (pkgs.writeTextFile {
+            name = "kitty.conf";
+            destination = "/Users/${builtins.getEnv "USER"}/.config/kitty.conf";
+            text = builtins.readFile "$repository/kitty.conf"
+        })
       ];
     };
   };
