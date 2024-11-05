@@ -100,10 +100,19 @@
       };
 
     };
-    homeconfig = {pkgs, ...} : {
+    homeconfig = {pkgs, fetchgit, ...} : {
       home.stateVersion = "24.05";
       programs.home-manager.enable = true;
 
+      home.file.".config/nvim/init.lua" = {
+        source = builtins.fetchGit {
+	  url = "https://github.com/justyntemme/dotfiles";
+	  sparseCheckout = [
+	    ".config/init.lua"
+	  ];
+	  
+	};
+      };
       home.packages = with pkgs; [];
 
       home.sessionVariables = {
