@@ -27,7 +27,7 @@
         (pkgs.writeTextFile {
             name = "kitty.conf";
             destination = "/Users/${builtins.getEnv "USER"}/.config/kitty.conf";
-            text = builtins.readFile "$repository/kitty.conf"
+            text = builtins.readFile "${repository}/kitty.conf"
         })
       ];
     };
