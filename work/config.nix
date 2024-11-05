@@ -17,6 +17,7 @@
       paths = [
         (pkgs.writeTextFile {
           name = "init.lua";
+          destination = "/Users/${builtins.getEnv "USER"}/.config/nvim/init.lua"
           text = builtins.readFile "${repository}/work/init.lua";
         })
         (pkgs.writeTextFile {
@@ -26,8 +27,8 @@
         })
         (pkgs.writeTextFile {
             name = "kitty.conf";
-            destination = "/Users/${builtins.getEnv "USER"}/.config/kitty.conf";
-            text = builtins.readFile "${repository}/kitty.conf"
+            destination = "/Users/${builtins.getEnv "USER"}/.config/kitty/kitty.conf";
+            text = builtins.readFile "${repository}/kitty.conf";
         })
       ];
     };
