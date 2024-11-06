@@ -130,7 +130,8 @@
      
       programs.kitty = {
         enable = true;
-	      #catppuccin-frappe.enable = true;
+	      catppuccin.enable = true;
+        catppuccin.flavor = "frappe";
         font = {
             name = "FiraCode Nerd Font Mono";
             package = pkgs.fira-code;
@@ -141,7 +142,6 @@
         # font = {
         #   #package = "FiraCode Nerd Font Mono";
         # };
-        themeFile = "Catppuccin-Frappe";
       };
 
 	    programs.neovim = {
