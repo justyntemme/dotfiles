@@ -130,13 +130,18 @@
      
       programs.kitty = {
         enable = true;
-	      catppuccin.enable = true;
+	      #catppuccin-frappe.enable = true;
+        font = {
+            name = "FiraCode Nerd Font Mono";
+            package = pkgs.fira-code;
+            size = 12;
+          };
         #font = pkgs.nerdfonts;
         #font = "FiraCode Nerd Font Mono";
         # font = {
         #   #package = "FiraCode Nerd Font Mono";
         # };
-        #themeFile = "Catppuccin-Mocha";
+        themeFile = "Catppuccin-Frappe";
       };
 
 	    programs.neovim = {
@@ -187,7 +192,7 @@
     # Expose the package set, including overlays, for convenience.
     darwinPackages = self.darwinConfigurations."earth".pkgs;
   
-    environment.systemPackages = [ 
+    environment.systemPackages = [
       ];
 
     fonts.packages = [
