@@ -13,22 +13,26 @@
     nixneovimplugins.url = github:jooooscha/nixpkgs-vim-extra-plugins;
   };
 
-  outputs = inputs@{ self, catppuccin, nix-darwin, LazyVim, home-manager, nixpkgs, ... }:
+  outputs = inputs@{self, catppuccin, nix-darwin, LazyVim, home-manager, nixpkgs, ... }:
   let
     configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
+     # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [ripgrep neofetch git wget curl zsh-powerlevel10k LazyVim];
+        [nerdfonts ripgrep kitty neofetch git wget curl zsh-powerlevel10k LazyVim];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
+      environment.variables = {
+       #TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
+      };
       # nix.package = pkgs.nix;
      # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
      # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
       programs.zsh.enable = true;
+
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -42,7 +46,9 @@
       security.pam.enableSudoTouchIdAuth = true;
       nixpkgs.overlays = [
         inputs.nixneovimplugins.overlays.default
-	];
+	    ];
+
+
 
 
       system.defaults = {
@@ -64,7 +70,6 @@
           "android-platform-tools"
           "firefox"
           "google-chrome"
-          "kitty"
           "notion"
         ];
 
@@ -95,14 +100,16 @@
       home.stateVersion = "24.05";
       imports = [
               catppuccin.homeManagerModules.catppuccin
-	      inputs.LazyVim.homeManagerModules.default
-
+	            inputs.LazyVim.homeManagerModules.default
       ];
       programs.home-manager.enable = true;
-       programs.lazyvim = {
+      programs.lazyvim = {
          enable = true;
-         
-       };
+      };
+      fonts.fontconfig.enable = true;
+      
+      #home.fonts.fontsconfig.enable = true;
+
       # programs.neovim = {
       #   plugins =  with pkgs.vimPlugins; [
       #   "ruff"
@@ -110,38 +117,46 @@
       #   ];
       # };
       programs.git = {
-	enable = true;
-	userName = "Justyn Temme";
-	userEmail = "justyntemme@gmail.com";
-	extraConfig = {
-	  pull = {
-	    rebase = true;
-	    };
-	  };
+	      enable = true;
+	      userName = "Justyn Temme";
+	      userEmail = "justyntemme@gmail.com";
+	      extraConfig = {
+	        pull = {
+	          rebase = true;
+	        };
+	      };
 
       };
      
       programs.kitty = {
         enable = true;
-	catppuccin.enable = true;
+	      catppuccin.enable = true;
+        #font = pkgs.nerdfonts;
+        #font = "FiraCode Nerd Font Mono";
+        # font = {
+        #   #package = "FiraCode Nerd Font Mono";
+        # };
+        #themeFile = "Catppuccin-Mocha";
       };
 
-	     programs.neovim = {
-	defaultEditor = true;
-	vimAlias = true;
-	vimdiffAlias = true;
-	plugins = [
-	   # nvim-lspconfig
-	   # nvim-treesitter.withAllGrammars
-	          # pkgs.vimExtraPlugins.catppuccin-nvim
-	          pkgs.vimExtraPlugins.lazy-nvim
-	   # pkgs.vimExtraPlugins.catppuccin.nvim
-	   # pkgs.vimExtraPlugins.mason-nvm
-	];
-	     };
+	    programs.neovim = {
+	      defaultEditor = true;
+	      vimAlias = true;
+	      vimdiffAlias = true;
+	      plugins = [
+	        # nvim-lspconfig
+	        # nvim-treesitter.withAllGrammars
+	        # pkgs.vimExtraPlugins.catppuccin-nvim
+	        pkgs.vimExtraPlugins.lazy-nvim
+          pkgs.vimExtraPlugins.mason-nvim
+	        pkgs.vimExtraPlugins.catppuccin
+	     ];
+	    };
 
       
-      home.packages = with pkgs; [];
+      home.packages = with pkgs; [
+      (pkgs.nerdfonts.override { fonts = ["FiraCode"]; })
+      ];
 
       home.sessionVariables = {
       EDITOR = "nvim";
@@ -156,14 +171,13 @@
     darwinConfigurations."earth" = nix-darwin.lib.darwinSystem {
       modules = [ 
       	configuration
-	home-manager.darwinModules.home-manager {
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
-	  home-manager.verbose = true;
+	      home-manager.darwinModules.home-manager {
+	        home-manager.useGlobalPkgs = true;
+	        home-manager.useUserPackages = true;
+	        home-manager.verbose = true;
       	  users.users.justyntemme.home = "/Users/justyntemme";
-	  home-manager.users.justyntemme = homeconfig;
-	  
-	  }
+	        home-manager.users.justyntemme = homeconfig;
+	    }
 	];
       specialArgs = { inherit inputs;  };
 
