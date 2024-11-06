@@ -7,32 +7,21 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin.url = "github:catppuccin/nix";
+    nixneovimplugins.url = github:jooooscha/nixpkgs-vim-extra-plugins;
+    lazyVim-nix.url = github:jla2000/lazyvim-nix;
+    lazyVim-nix.inputs.nixpkgs.follows = "nixpkgs";
+# LazyVim.url = "github:matadaniel/LazyVim-module";
+    # LazyVim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, ... }:
+  outputs = inputs@{ self, catppuccin, nix-darwin, lazyVim-nix, home-manager, nixpkgs, ... }:
   let
-	#   darwinConfigurations = {
-	# hostname = nix-darwin.lib.darwinSystem {
-	# system = "aarch64-darwin";
-	# modules = [
-	# ./configurations.nix
-	# home-manager.darwinModules.home-manager
-	# {
-	#   home-manager.useGlobalPkgs = true;
-	#   home-manager.useUserPackages = true;
-	#   home-manager.users.justyntemme = import ./home.nix;
-	#   }
-	#   ];
-	#   };
-	#
-	#
-	#   }
-	#
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [ neofetch vim git wget curl zsh-powerlevel10k];
+        [ neofetch git wget curl zsh-powerlevel10k lazyVim-nix.packages.aarch64-darwin.nvim];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -53,6 +42,10 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
       security.pam.enableSudoTouchIdAuth = true;
+
+      nixpkgs.overlays = [
+        inputs.nixneovimplugins.overlays.default
+	];
 
 
       system.defaults = {
@@ -76,6 +69,7 @@
           "google-chrome"
           "kitty"
           "notion"
+          "xcodeclangformat"
         ];
 
         brews = [
@@ -91,7 +85,7 @@
               "gcc"
               "node"
               "llvm"
-              "neovim"
+              # "neovim"
               "cmake"
               "tree-sitter"
               "zsh"
@@ -101,9 +95,17 @@
 
     };
     homeconfig = {pkgs, ...} : {
-      # home-manager.users.justyntemme.home.homeDirectory = "/Users/justyntemme/";
+      home.username = "justyntemme";
       home.stateVersion = "24.05";
+      imports = [
+              catppuccin.homeManagerModules.catppuccin
+	      # inputs.LazyVim.homeManagerModules.default
+
+      ];
       programs.home-manager.enable = true;
+      # programs.lazyvim = {
+      #   enable = true;
+      # };
       programs.git = {
 	enable = true;
 	userName = "Justyn Temme";
@@ -115,7 +117,27 @@
 	  };
 
       };
+     
+      programs.kitty = {
+        enable = true;
+	catppuccin.enable = true;
+      };
 
+	#      programs.neovim = {
+	#        enable = true;
+	# defaultEditor = true;
+	# vimAlias = true;
+	# vimdiffAlias = true;
+	# plugins = with pkgs.vimPlugins; [
+	#    nvim-lspconfig
+	#    nvim-treesitter.withAllGrammars
+	#           catppuccin-nvim
+	#           LazyVim
+	#    # pkgs.vimExtraPlugins.catppuccin.nvim
+	#    # pkgs.vimExtraPlugins.mason-nvm
+	# ];
+	#      };
+	#
       
       home.packages = with pkgs; [];
 
@@ -141,7 +163,9 @@
 	  
 	  }
 	];
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs;  };
+
+
     };
 
     # Expose the package set, including overlays, for convenience.
