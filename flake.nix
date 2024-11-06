@@ -8,20 +8,18 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.url = "github:catppuccin/nix";
+    LazyVim.url = "github:matadaniel/LazyVim-module";
+    LazyVim.inputs.nixpkgs.follows = "nixpkgs";
     nixneovimplugins.url = github:jooooscha/nixpkgs-vim-extra-plugins;
-    lazyVim-nix.url = github:jla2000/lazyvim-nix;
-    lazyVim-nix.inputs.nixpkgs.follows = "nixpkgs";
-# LazyVim.url = "github:matadaniel/LazyVim-module";
-    # LazyVim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, catppuccin, nix-darwin, lazyVim-nix, home-manager, nixpkgs, ... }:
+  outputs = inputs@{ self, catppuccin, nix-darwin, LazyVim, home-manager, nixpkgs, ... }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [ neofetch git wget curl zsh-powerlevel10k lazyVim-nix.packages.aarch64-darwin.nvim];
+        [ripgrep neofetch git wget curl zsh-powerlevel10k LazyVim];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -42,7 +40,6 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
       security.pam.enableSudoTouchIdAuth = true;
-
       nixpkgs.overlays = [
         inputs.nixneovimplugins.overlays.default
 	];
@@ -69,7 +66,6 @@
           "google-chrome"
           "kitty"
           "notion"
-          "xcodeclangformat"
         ];
 
         brews = [
@@ -99,12 +95,19 @@
       home.stateVersion = "24.05";
       imports = [
               catppuccin.homeManagerModules.catppuccin
-	      # inputs.LazyVim.homeManagerModules.default
+	      inputs.LazyVim.homeManagerModules.default
 
       ];
       programs.home-manager.enable = true;
-      # programs.lazyvim = {
-      #   enable = true;
+       programs.lazyvim = {
+         enable = true;
+         
+       };
+      # programs.neovim = {
+      #   plugins =  with pkgs.vimPlugins; [
+      #   "ruff"
+      #   "clangd_extensions"
+      #   ];
       # };
       programs.git = {
 	enable = true;
@@ -123,21 +126,20 @@
 	catppuccin.enable = true;
       };
 
-	#      programs.neovim = {
-	#        enable = true;
-	# defaultEditor = true;
-	# vimAlias = true;
-	# vimdiffAlias = true;
-	# plugins = with pkgs.vimPlugins; [
-	#    nvim-lspconfig
-	#    nvim-treesitter.withAllGrammars
-	#           catppuccin-nvim
-	#           LazyVim
-	#    # pkgs.vimExtraPlugins.catppuccin.nvim
-	#    # pkgs.vimExtraPlugins.mason-nvm
-	# ];
-	#      };
-	#
+	     programs.neovim = {
+	defaultEditor = true;
+	vimAlias = true;
+	vimdiffAlias = true;
+	plugins = [
+	   # nvim-lspconfig
+	   # nvim-treesitter.withAllGrammars
+	          # pkgs.vimExtraPlugins.catppuccin-nvim
+	          pkgs.vimExtraPlugins.lazy-nvim
+	   # pkgs.vimExtraPlugins.catppuccin.nvim
+	   # pkgs.vimExtraPlugins.mason-nvm
+	];
+	     };
+
       
       home.packages = with pkgs; [];
 
