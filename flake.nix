@@ -127,7 +127,16 @@
 	      };
 
       };
-     
+
+      programs.zsh = {
+        enable = true;
+        oh-my-zsh = {
+            enable = true;
+            plugins = ["git"];
+            theme = "powerlevel10k";
+          };
+      };
+
       programs.kitty = {
         enable = true;
 	      catppuccin.enable = true;
