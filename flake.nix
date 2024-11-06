@@ -100,19 +100,23 @@
       };
 
     };
-    homeconfig = {pkgs, fetchgit, ...} : {
+    homeconfig = {pkgs, ...} : {
+      # home-manager.users.justyntemme.home.homeDirectory = "/Users/justyntemme/";
       home.stateVersion = "24.05";
       programs.home-manager.enable = true;
+      programs.git = {
+	enable = true;
+	userName = "Justyn Temme";
+	userEmail = "justyntemme@gmail.com";
+	extraConfig = {
+	  pull = {
+	    rebase = true;
+	    };
+	  };
 
-      home.file.".config/nvim/init.lua" = {
-        source = builtins.fetchGit {
-	  url = "https://github.com/justyntemme/dotfiles";
-	  sparseCheckout = [
-	    ".config/init.lua"
-	  ];
-	  
-	};
       };
+
+      
       home.packages = with pkgs; [];
 
       home.sessionVariables = {
@@ -132,7 +136,9 @@
 	  home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
 	  home-manager.verbose = true;
-	  #home-manager.users.justyntemme = homeconfig;
+      	  users.users.justyntemme.home = "/Users/justyntemme";
+	  home-manager.users.justyntemme = homeconfig;
+	  
 	  }
 	];
       specialArgs = { inherit inputs; };
