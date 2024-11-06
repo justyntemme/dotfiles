@@ -8,18 +8,16 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.url = "github:catppuccin/nix";
-    LazyVim.url = "github:matadaniel/LazyVim-module";
-    LazyVim.inputs.nixpkgs.follows = "nixpkgs";
     nixneovimplugins.url = github:jooooscha/nixpkgs-vim-extra-plugins;
   };
 
-  outputs = inputs@{self, catppuccin, nix-darwin, LazyVim, home-manager, nixpkgs, ... }:
+  outputs = inputs@{self, catppuccin, nix-darwin, home-manager, nixpkgs, ... }:
   let
     configuration = { pkgs, ... }: {
      # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [nerdfonts ripgrep kitty neofetch git wget curl zsh-powerlevel10k LazyVim];
+        [zsh-autosuggestions zsh-autocomplete zsh neovim clang-tools clang nerdfonts ripgrep kitty neofetch git wget curl zsh-powerlevel10k];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -31,7 +29,6 @@
       nix.settings.experimental-features = "nix-command flakes";
      # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
-      programs.zsh.enable = true;
 
 
       # Set Git commit hash for darwin-version.
@@ -74,7 +71,6 @@
         ];
 
         brews = [
-              "zsh-autosuggestions"
               "tailscale"
               "imagemagick"
               "rust"
@@ -86,10 +82,8 @@
               "gcc"
               "node"
               "llvm"
-              # "neovim"
               "cmake"
               "tree-sitter"
-              "zsh"
           ];
 
       };
@@ -100,40 +94,32 @@
       home.stateVersion = "24.05";
       imports = [
               catppuccin.homeManagerModules.catppuccin
-	            inputs.LazyVim.homeManagerModules.default
       ];
       programs.home-manager.enable = true;
-      programs.lazyvim = {
-         enable = true;
-      };
-      fonts.fontconfig.enable = true;
       
-      #home.fonts.fontsconfig.enable = true;
+      fonts.fontconfig.enable = true;
+            #home.fonts.fontsconfig.enable = true;
 
-      # programs.neovim = {
-      #   plugins =  with pkgs.vimPlugins; [
-      #   "ruff"
-      #   "clangd_extensions"
-      #   ];
-      # };
       programs.git = {
-	      enable = true;
-	      userName = "Justyn Temme";
-	      userEmail = "justyntemme@gmail.com";
-	      extraConfig = {
-	        pull = {
-	          rebase = true;
-	        };
-	      };
-
+	enable = true;
+	userName = "Justyn Temme";
+	userEmail = "justyntemme@gmail.com";
+	extraConfig = {
+	  pull = {
+	    rebase = true;
+	  };
+        };
       };
 
       programs.zsh = {
         enable = true;
+        enableCompletion = true;
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
         oh-my-zsh = {
             enable = true;
-            plugins = ["git"];
-            theme = "powerlevel10k";
+            plugins = ["sudo" "git"];
+            theme = "robbyrussell";
           };
       };
 
@@ -146,24 +132,18 @@
             package = pkgs.fira-code;
             size = 12;
           };
-        #font = pkgs.nerdfonts;
-        #font = "FiraCode Nerd Font Mono";
-        # font = {
-        #   #package = "FiraCode Nerd Font Mono";
-        # };
       };
 
 	    programs.neovim = {
 	      defaultEditor = true;
 	      vimAlias = true;
 	      vimdiffAlias = true;
-	      plugins = [
-	        # nvim-lspconfig
-	        # nvim-treesitter.withAllGrammars
+	      plugins = with pkgs.vimPlugins; [
+	        nvim-lspconfig
+	        nvim-treesitter.withAllGrammars
 	        # pkgs.vimExtraPlugins.catppuccin-nvim
-	        pkgs.vimExtraPlugins.lazy-nvim
-          pkgs.vimExtraPlugins.mason-nvim
-	        pkgs.vimExtraPlugins.catppuccin
+                #pkgs.vimExtraPlugins.mason-nvim
+	        #pkgs.vimExtraPlugins.catppuccin
 	     ];
 	    };
 
