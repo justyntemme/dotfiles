@@ -18,7 +18,7 @@
      # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [lua-language-server ruff black zsh-autosuggestions zsh-autocomplete zsh clang-tools clang nerdfonts ripgrep kitty neofetch git wget curl zsh-powerlevel10k];
+        [lua-language-server ruff black go gofumpt go-tools zsh-autosuggestions zsh-autocomplete zsh clang-tools clang nerdfonts ripgrep kitty neofetch git wget curl zsh-powerlevel10k];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -72,6 +72,7 @@
               "tailscale"
               "imagemagick"
               "rust"
+              "prettier"
               "sqlite"
               "python"
               "gnupg"
@@ -118,6 +119,7 @@
                 pkgs.vimPlugins.smartcolumn-nvim
                 pkgs.vimPlugins.vim-dotenv
                 pkgs.vimPlugins.stabilize-nvim
+                pkgs.vimPlugins.null-ls-nvim
 	     ];
 	     extraLuaConfig =
 	      let
