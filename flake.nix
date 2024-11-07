@@ -18,7 +18,7 @@
      # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [zsh-autosuggestions zsh-autocomplete zsh clang-tools clang nerdfonts ripgrep kitty neofetch git wget curl zsh-powerlevel10k];
+        [lua-language-server ruff black zsh-autosuggestions zsh-autocomplete zsh clang-tools clang nerdfonts ripgrep kitty neofetch git wget curl zsh-powerlevel10k];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -101,16 +101,17 @@
 	      defaultEditor = true;
 	      vimAlias = true;
 	      vimdiffAlias = true;
-	      extraPackages = with pkgs; [
-	      	lua-language-server
-		ansible-language-server
-		terraform-ls
-		ripgrep
+	      extraPackages = [
+	      	pkgs.lua-language-server
+		      pkgs.ansible-language-server
+		      pkgs.terraform-ls
+		      pkgs.ripgrep
+          pkgs.vimPlugins.nvim-lspconfig
 		];
 	      plugins = [
                 pkgs.vimPlugins.lazy-nvim
                 pkgs.vimPlugins.nvim-tree-lua
-		pkgs.vimPlugins.catppuccin-nvim
+		            pkgs.vimPlugins.catppuccin-nvim
                 pkgs.vimPlugins.nerdtree
                 pkgs.vimPlugins.fzf-vim
                 pkgs.vimPlugins.pretty-fold-nvim
@@ -163,7 +164,6 @@
 		  vim-startuptime
 		  which-key-nvim
 		  { name = "LuaSnip"; path = luasnip; }
-		  { name = "catppuccin"; path = catppuccin-nvim; }
 		  { name = "mini.ai"; path = mini-nvim; }
 		  { name = "mini.bufremove"; path = mini-nvim; }
 		  { name = "mini.comment"; path = mini-nvim; }
