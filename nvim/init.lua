@@ -55,9 +55,11 @@ lspconfig.rust_analyzer.setup({
 	on_attach = function(_, bufnr)
 		-- Keybinding specific to Rust buffers
 		vim.keymap.set("n", "gb", "<cmd>RustRun<cr>", { buffer = bufnr })
+		vim.keymap.set("n", "gF", "<cmd>RustFmt<cr>", { buffer = bufnr })
+		vim.keymap.set("n", "g<leader>", "<cmd>RustTest<cr>", { buffer = bufnr })
 	end,
 })
-
+--
 --require'lspconfig'.pyright.setup{}
 require("lspconfig").ruff.setup({
 	on_attach = function(client, bufnr)
