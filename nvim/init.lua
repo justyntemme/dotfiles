@@ -25,7 +25,17 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 
 	spec = {
-		{ "nvim-telescope/telescope.nvim" },
+		{
+			"nvim-telescope/telescope.nvim",
+			extensions = {
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
+				},
+			},
+		},
 		{ "neovim/nvim-lspconfig" },
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		{ import = "lazyvim.plugins.extras.lang.python" },
@@ -60,7 +70,9 @@ lspconfig.rust_analyzer.setup({
 		vim.keymap.set("n", "g<leader>", "<cmd>RustTest<cr>", { buffer = bufnr })
 	end,
 })
---
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require("telescope").load_extension("fzf")
 --require'lspconfig'.pyright.setup{}
 require("lspconfig").ruff.setup({
 	on_attach = function(client, bufnr)
