@@ -28,6 +28,8 @@ require("lazy").setup({
 		{ "neovim/nvim-lspconfig" },
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		{ import = "lazyvim.plugins.extras.lang.python" },
+		{ "nvim-telescope/telescope.nvim", tag = "0.1.8" },
+
 		--	{"nvim-treesitter/nvim-treesitter"},
 		{
 			"catppuccin/nvim",
@@ -47,22 +49,7 @@ require("lazy").setup({
 		highlight = { enabled = true },
 	},
 })
--- Add custom LSP keybindings
-local lspconfig = require("lspconfig")
 
--- Setup rust-analyzer with a keybinding for RustRun
-lspconfig.rust_analyzer.setup({
-	on_attach = function(_, bufnr)
-		-- Keybinding specific to Rust buffers
-		vim.keymap.set("n", "gb", "<cmd>RustRun<cr>", { buffer = bufnr })
-		vim.keymap.set("n", "gF", "<cmd>RustFmt<cr>", { buffer = bufnr })
-		vim.keymap.set("n", "g<leader>", "<cmd>RustTest<cr>", { buffer = bufnr })
-	end,
-})
---
---require'lspconfig'.pyright.setup{}
-require("lspconfig").ruff.setup({
-	on_attach = function(client, bufnr)
-		vim.keymap.set("n", "gb", "<cmd>!python3 %<cr>", { buffer = bufnr })
-	end,
-})
+-- require'lspconfig'.pyright.setup{}
+
+require("lspconfig").ruff.setup({})
