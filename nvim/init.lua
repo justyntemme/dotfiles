@@ -26,23 +26,42 @@ require("lazy").setup({
 
 	spec = {
 		{
+			"ray-x/go.nvim",
+			dependencies = { -- optional packages
+				"ray-x/guihua.lua",
+				"neovim/nvim-lspconfig",
+				"nvim-treesitter/nvim-treesitter",
+			},
+			config = function()
+				require("go").setup()
+			end,
+			event = { "CmdlineEnter" },
+			ft = { "go", "gomod" },
+			build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+		},
+		{
 			"nvim-telescope/telescope.nvim",
 			extensions = {
 				fzf = {
 					fuzzy = true,
-					override_generic_sorter = true, "gosum",
+					override_generic_sorter = "gosum",
 					override_file_sorter = true,
 					case_mode = "smart_case",
 				},
 			},
 		},
-    {"williamboman/mason.nvim",
-    ops = { ensure_installed = {"goimports", "gofumpt"}},
+		{ "williamboman/mason.nvim", opts = {
+			ensure_installed = { "goimports", "gofumpt" },
+		} },
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		{ import = "lazyvim.plugins.extras.lang.python" },
 		{ import = "lazyvim.plugins.extras.lang.go" },
-		{ "nvim-treesitter/nvim-treesitter",
-    opts = {ensure_installed = {"go", "gomodifytags", "impl", "gomod", "gowork", "gosum"}},
+		{
+			"nvim-treesitter/nvim-treesitter",
+			opts = {
+				ensure_installed = { "go", "gomod", "gowork", "gosum" },
+			},
+		},
 		{
 			"catppuccin/nvim",
 			lazy = false, -- make sure we load this during startup if it is your main colorscheme
