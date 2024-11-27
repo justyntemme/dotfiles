@@ -92,15 +92,15 @@ require("lazy").setup({
 					},
 					--		vim.keymap.set("n", "gb", "<cmd>!python3 %<cr>", { buffer = bufnr })
 
-					keys = {
-						{
-							"<leader>co",
-							LazyVim.lsp.action["source.organizeImports"],
-							desc = "organize Imports",
-						},
-						--{ "gb", LazyVim.lsp.action[""] },
-						--desc = "go run",
-					},
+					-- keys = {
+					-- 	{
+					-- 		"<leader>co",
+					-- 		LazyVim.lsp.action["source.organizeImports"],
+					-- 		desc = "organize Imports",
+					-- 	},
+					-- 	--{ "gb", LazyVim.lsp.action[""] },
+					-- 	--desc = "go run",
+					-- },
 				},
 				gopls = {
 					settings = {
