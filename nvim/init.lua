@@ -145,7 +145,8 @@ require("lazy").setup({
 	-- 		},
 	-- 	},
 	-- },
---})
+})
+
 -- Global Keybindings
 vim.keymap.set("n", "<leader>H", "<cmd>lua Snacks.notifier.show_history()<cr>", { buffer = bufnr })
 -- Add custom LSP keybindings
