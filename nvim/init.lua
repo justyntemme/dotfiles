@@ -145,9 +145,7 @@ require("lazy").setup({
 	-- 		},
 	-- 	},
 	-- },
->>>>>>> e752391 (revert to using default options so lazyvim will handle dap configuration)
-})
-
+--})
 -- Global Keybindings
 vim.keymap.set("n", "<leader>H", "<cmd>lua Snacks.notifier.show_history()<cr>", { buffer = bufnr })
 -- Add custom LSP keybindings
