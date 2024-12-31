@@ -1,4 +1,4 @@
--- Bootstrap lazy.nvi
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -67,18 +67,6 @@ require("lazy").setup({
 		highlight = { enabled = true },
 	},
 })
-
--- User Functions
--- Define a function to run the current file as a bash script
-local function run_current_file_as_bash()
-	local file = vim.fn.expand("%")
-	vim.cmd("!bash " .. file)
-end
-
+vim.keymap.set("n", "<leader>H", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = bufnr })
 -- Global Keybindings
-
-vim.keymap.set("n", "<leader>dS", "<cmd>!bash %<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>H", "<cmd>lua Snacks.notifier.show_history()<cr>", { buffer = bufnr })
--- Add custom LSP keybindings
--- local lspconfig = require("lspconfig")
 require("hardtime").setup()
