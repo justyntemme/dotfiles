@@ -1,0 +1,40 @@
+# NOTE:
+# docs:
+# ghostty +show-config --default --docs | nvim
+# examples:
+# https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
+
+# ghostty +list-fonts
+font-family = "Symbols Nerd Font Mono"
+font-family = "Nerd Font Mono"
+font-family-italic = "Nerd Font Mono"
+font-family-bold-italic = "Nerd Font Mono"
+font-size = 14
+window-title-font-family = "Nerd Font Mono"
+
+# Quick Terminal Configuration
+# TODO after PR quick-terminal-size = 25%
+quick-terminal-autohide = true
+
+# Noconfirm closing
+confirm-close-surface = false
+
+# window-title-font-family
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = true
+
+shell-integration = zsh
+
+background-opacity = 0.96
+background-blur-radius = 40
+
+# ghostty +list-themes
+theme = catppuccin-frappe
+
+initial-command=neofetch
+# keymaps
+keybind = global:cmd+`=toggle_quick_terminal
+keybind = shift+ctrl+left_bracket=previous_tab
+keybind = shift+ctrl+right_bracket=next_tab
+
