@@ -67,28 +67,53 @@ require("lazy").setup({
 		highlight = { enabled = true },
 	},
 })
-vim.api.nvim_create_autocmd("CursorHold", {
-	pattern = "*",
-	callback = function()
-		for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-			if vim.api.nvim_win_get_config(winid).zindex then
-				return
+
+-- Define a flag to track whether the autocmd is enabled
+local autocmd_enabled = true
+
+-- Function to create the CursorHold autocmd
+local create_cursorhold_autocmd = function()
+	vim.api.nvim_create_augroup("MyCursorHoldGroup", { clear = true })
+	vim.api.nvim_create_autocmd("CursorHold", {
+		group = "MyCursorHoldGroup",
+		pattern = "*",
+		callback = function()
+			for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+				if vim.api.nvim_win_get_config(winid).zindex then
+					return
+				end
 			end
-		end
-		vim.diagnostic.open_float({
-			scope = "cursor",
-			focusable = false,
-			close_events = {
-				"CursorMoved",
-				"CursorMovedI",
-				"BufHidden",
-				"InsertCharPre",
-				"WinLeave",
-			},
-		})
-	end,
-})
-buffnr = buffr
-vim.keymap.set("n", "<leader>H", "<cmd>lua vim.diagnostic.open_float()<cr>", {})
--- Global Keybindings
+			vim.diagnostic.open_float({
+				scope = "cursor",
+				focusable = false,
+				close_events = {
+					"CursorMoved",
+					"CursorMovedI",
+					"BufHidden",
+					"InsertCharPre",
+					"WinLeave",
+				},
+			})
+		end,
+	})
+end
+
+-- Function to toggle the CursorHold autocmd
+local toggle_cursorhold_autocmd = function()
+	if autocmd_enabled then
+		vim.cmd("autocmd! MyCursorHoldGroup") -- Clear the autocmd group
+		print("CursorHold autocmd disabled")
+	else
+		create_cursorhold_autocmd() -- Recreate the autocmd
+		print("CursorHold autocmd enabled")
+	end
+	autocmd_enabled = not autocmd_enabled
+end
+
+-- Create the initial autocmd
+create_cursorhold_autocmd()
+
+-- Map <leader>H to toggle the autocmd
+vim.keymap.set("n", "<leader>H", toggle_cursorhold_autocmd, { desc = "Toggle CursorHold autocmd" })
+
 require("hardtime").setup()
