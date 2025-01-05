@@ -92,13 +92,12 @@ local create_cursorhold_autocmd = function()
 					"BufHidden",
 					"InsertCharPre",
 					"WinLeave",
-					"User CursorHoldToggle", -- Custom event to toggle autocmd
+					--"User toggle_cursorhold_autocmd", -- Custom event to toggle autocmd
 				},
 			})
 		end,
 	})
 end
-
 -- Function to toggle the CursorHold autocmd
 local toggle_cursorhold_autocmd = function()
 	if autocmd_enabled then
