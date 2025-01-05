@@ -67,6 +67,6 @@ require("lazy").setup({
 		highlight = { enabled = true },
 	},
 })
-vim.keymap.set("n", "<leader>H", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = bufnr })
+vim.keymap.set("n", "<leader>H", "<cmd>lua vim.diagnostic.open_float()<cr>", {})
 -- Global Keybindings
 require("hardtime").setup()
