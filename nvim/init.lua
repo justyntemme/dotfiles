@@ -92,6 +92,7 @@ local create_cursorhold_autocmd = function()
 					"BufHidden",
 					"InsertCharPre",
 					"WinLeave",
+					"User CursorHoldToggle", -- Custom event to toggle autocmd
 				},
 			})
 		end,
@@ -112,7 +113,6 @@ end
 
 -- Create the initial autocmd
 create_cursorhold_autocmd()
-
 -- Map <leader>H to toggle the autocmd
 vim.keymap.set("n", "<leader>H", toggle_cursorhold_autocmd, { desc = "Toggle CursorHold autocmd" })
 
