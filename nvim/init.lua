@@ -26,8 +26,14 @@ require("lazy").setup({
 
 	spec = {
 		-- lazy.nvim
+		{
+			"gbprod/substitute.nvim",
+			opts = {
+				-- config options
+				yank_substituted_text = false,
+			},
+		},
 		{ "echasnovski/mini.icons", version = false },
-		{ "BrunoCiccarino/neokinds" },
 		{
 			"echasnovski/mini.icons",
 			opts = {},
@@ -126,9 +132,14 @@ end
 
 -- Create the initial autocmd
 create_cursorhold_autocmd()
+-- Keymaps
 -- Map <leader>H to toggle the autocmd
 vim.keymap.set("n", "<leader>H", toggle_cursorhold_autocmd, { desc = "Toggle CursorHold autocmd" })
-
+-- substitute Keymaps
+vim.keymap.set("n", "m", require("substitute").operator, { noremap = true })
+vim.keymap.set("n", "mm", require("substitute").line, { noremap = true })
+vim.keymap.set("n", "M", require("substitute").eol, { noremap = true })
+vim.keymap.set("x", "m", require("substitute").visual, { noremap = true })
 -- Setup functions
 require("mini.icons").setup()
 require("hardtime").setup()
