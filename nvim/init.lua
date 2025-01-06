@@ -26,6 +26,22 @@ require("lazy").setup({
 
 	spec = {
 		-- lazy.nvim
+		{ "echasnovski/mini.icons", version = false },
+		{ "BrunoCiccarino/neokinds" },
+		{
+			"echasnovski/mini.icons",
+			opts = {},
+			lazy = true,
+			specs = {
+				{ "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+			},
+			init = function()
+				package.preload["nvim-web-devicons"] = function()
+					require("mini.icons").mock_nvim_web_devicons()
+					return package.loaded["nvim-web-devicons"]
+				end
+			end,
+		},
 		{
 			"m4xshen/hardtime.nvim",
 			dependencies = { "MunifTanjim/nui.nvim" },
@@ -58,8 +74,6 @@ require("lazy").setup({
 				vim.cmd([[colorscheme catppuccin-frappe]])
 			end,
 		},
-		-- Configure any other settings here. See the documentation for more details.
-		-- colorscheme that will be used when installing plugins.
 
 		install = { colorscheme = { "catppuccin-frappe" } },
 		-- automatically check for plugin updates
@@ -67,10 +81,10 @@ require("lazy").setup({
 		highlight = { enabled = true },
 	},
 })
+-- Custom Functions
 
 -- Define a flag to track whether the autocmd is enabled
 local autocmd_enabled = true
-
 -- Function to create the CursorHold autocmd
 local create_cursorhold_autocmd = function()
 	vim.api.nvim_create_augroup("MyCursorHoldGroup", { clear = true })
@@ -115,4 +129,6 @@ create_cursorhold_autocmd()
 -- Map <leader>H to toggle the autocmd
 vim.keymap.set("n", "<leader>H", toggle_cursorhold_autocmd, { desc = "Toggle CursorHold autocmd" })
 
+-- Setup functions
+require("mini.icons").setup()
 require("hardtime").setup()
