@@ -371,16 +371,16 @@
   # Version control background colors.
   typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND="%F{255}"
   typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="%F{255}"
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="%F{255}"
   typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND="%7F"
+#  typeset -g POWERLEVEL9K_VCS_CONFLICTED_ICON =""
   typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND="%7F"
 
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
   typeset -g POWERLEVEL9K_VCS_BRANCH_ICON_FOREGROUND=255
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='%7f\uF126 '
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='%7f'
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='%1F?'
+#   typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='%1F?'
 
   # Formatter for Git status.
   #
@@ -402,10 +402,10 @@
 
     # Styling for different parts of Git status.
     local       meta='%7f' # white foreground
-    local      clean='%F{255}' # black foreground
-    local   modified='%F{255}' # black foreground
-    local  untracked='%F{255}' # black foreground
-    local conflicted='%1F' # red foreground
+    local      clean='%F{255} ' # black foreground
+    local   modified='%F{255}' # black foreground
+    local  untracked='%F{255}' # black foreground
+    local conflicted='%1F' # red foreground
 
     local res
 
@@ -458,12 +458,12 @@
     fi
 
     # ⇠42 if behind the push remote.
-    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
     (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
     # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
-    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
     # *42 if have stashes.
-    (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
+    (( VCS_STATUS_STASHES        )) && res+=" ${VCS_STATUS_STASHES}"
     # 'merge' if the repo is in an unusual state.
     [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
     # ~42 if have merge conflicts.
@@ -471,7 +471,7 @@
     # +42 if have staged changes.
     (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
     # !42 if have unstaged changes.
-    (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+    (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}${VCS_STATUS_NUM_UNSTAGED}"
     # ?42 if have untracked files. It's really a question mark, your font isn't broken.
     # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
     # Remove the next line if you don't want to see untracked files at all.
@@ -512,7 +512,7 @@
   #typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION_FOREGROUND=255
   typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='%7F '
   # Custom prefix.
-  typeset -g POWERLEVEL9K_VCS_PREFIX='%7fon '
+  typeset -g POWERLEVEL9K_VCS_PREFIX='%7fon'
   typeset -g POWERLEVEL9K_VCS_PREFIX_FOREGROUND="255"
   # Show status of repositories of these types. You can add svn and/or hg if you are
   # using them. If you do, your prompt may become slow even when your current directory
