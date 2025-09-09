@@ -86,11 +86,11 @@
             "cache_duration": "none",
             "display_mode": "environment",
             "display_virtual_env_name": true,
-            "fetch_version": false
+            "fetch_version": false,
+            "home_enabled": true
           },
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "home_enabled": true,
           "template": "  {{.Venv}} {{.Full}} ",
           "foreground": "#d3e6d3",
           "background": "#825d4c",
