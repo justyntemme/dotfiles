@@ -82,10 +82,14 @@ ZSH_THEME=""
 # Add wisely, as too many plugins slow down shell startup.
 
 #plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat zsh-autocomplete) 
-plugins=(macos zsh-autocomplete python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat ) 
+plugins=(macos colored-man-pages eza gpg-agent last-working-dir safe-paste ssh tailscale thefuck tldr vi-mode zoxide brew python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat ) 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+alias help="navi"
+alias cd="z"
+alias cat="bat"
+alias catp="bat --plain --plain"
  _EZA_TAIL=()
  _EZA_TAIL+=("--icons")
  _EZA_TAIL+=("--group-directories-first")
@@ -123,4 +127,6 @@ export PATH="$PATH:$HOME/.scripts"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(navi widget zsh)" 
+eval "$(zoxide init zsh)"
 eval "$(oh-my-posh init zsh --config ~/.config/zsh/default.omp.json)"
