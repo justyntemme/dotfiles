@@ -53,7 +53,7 @@
           "trailing_diamond": "\ue0b4",
           "template": " {{ .Path }} ",
           "foreground": "#243335",
-          "background": "#aca06d",
+          "background": "#825d4c",
           "type": "path",
           "style": "diamond"
         },
@@ -114,7 +114,7 @@
           "trailing_diamond": "\ue0b4",
           "template": "󰌠 {{.Venv}} {{.Full}} ",
           "foreground": "#d3e6d3",
-          "background": "#825d4c",
+          "background": "#aca06d",
           "type": "python",
           "style": "diamond"
         },
