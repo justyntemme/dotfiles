@@ -69,7 +69,7 @@
           "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}",
           "foreground": "#243335",
           "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#aca06d{{ end }}",
             "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
             "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
             "{{ if gt .Behind 0 }}#B388FB{{ end }}"
@@ -130,11 +130,11 @@
         {
           "properties": {
             "cache_duration": "none",
-            "precision": 0
+            "precision": 1
           },
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": "\uefc5 {{ round .PhysicalPercentUsed .Precision }}% | \uf2db {{round .Load1 .Precision }}% ",
+          "template": " {{ round .PhysicalPercentUsed .Precision }}% | \uf2db {{round .Load1 .Precision }}% ",
           "foreground": "#d3e6d3",
           "background": "#8a7166",
           "type": "sysinfo",
