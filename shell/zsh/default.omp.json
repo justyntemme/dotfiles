@@ -96,7 +96,7 @@
           "trailing_diamond": "\ue0b4",
           "foreground": "#ffffff",
           "background": "#7FD5EA",
-          "template": "  {{ .Full }} {{ .Error }}",
+          "template": "  {{ .Full }}",
           "properties": {
             "display_mode": "always",
             "home_enabled": true
@@ -112,7 +112,7 @@
           },
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": "󰌠 {{.Venv}} {{.Full}} ",
+          "template": "󰌠 {{.Venv}} {{.Full}}",
           "foreground": "#d3e6d3",
           "background": "#aca06d",
           "type": "python",
