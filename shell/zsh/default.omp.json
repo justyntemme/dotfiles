@@ -22,6 +22,14 @@
           "trailing_diamond": "\ue0b4"
         },
         {
+          "type": "root",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#111111",
+          "background": "#ffff66",
+          "template": ""
+        },
+        {
           "properties": {
             "cache_duration": "none"
           },
@@ -33,7 +41,7 @@
           "type": "session",
           "style": "diamond",
           "background_templates": [
-            "{{if .Ssh}}#cf9279{{end}}"
+            ""
           ]
         },
         {
@@ -82,6 +90,19 @@
       "alignment": "right",
       "segments": [
         {
+          "type": "go",
+          "style": "diamond",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "#ffffff",
+          "background": "#7FD5EA",
+          "template": "  {{ .Full }} {{ .Error }}",
+          "properties": {
+            "display_mode": "always",
+            "home_enabled": true
+          }
+        },
+        {
           "properties": {
             "cache_duration": "none",
             "display_mode": "environment",
@@ -91,7 +112,7 @@
           },
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": "  {{.Venv}} {{.Full}} ",
+          "template": "󰌠 {{.Venv}} {{.Full}} ",
           "foreground": "#d3e6d3",
           "background": "#825d4c",
           "type": "python",
