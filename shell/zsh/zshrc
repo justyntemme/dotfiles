@@ -82,7 +82,7 @@ ZSH_THEME=""
 # Add wisely, as too many plugins slow down shell startup.
 
 #plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat zsh-autocomplete) 
-plugins=(macos colored-man-pages eza gpg-agent last-working-dir safe-paste ssh tailscale thefuck tldr vi-mode zoxide brew python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat ) 
+plugins=(macos autoswitch_virtualenv colored-man-pages eza gpg-agent last-working-dir safe-paste ssh tailscale thefuck tldr vi-mode zoxide brew python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat ) 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
