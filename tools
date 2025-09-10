@@ -1,0 +1,12 @@
+# Tools
+bat
+navi
+zoxide
+eza
+
+## ZSH 
+oh-my-zsh (Plugins defined in ~/.zshrc)
+oh-my-posh
+
+#### Vim Plugins
+- Located in repository / loaded via lazyVim
