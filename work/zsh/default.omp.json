@@ -45,7 +45,7 @@
           },
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": " {{.HostName}} ",
+          "template": " {{UserName}}@{{.HostName}} ",
           "foreground": "p:text",
           "background": "p:blue",
           "type": "session",
