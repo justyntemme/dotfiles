@@ -81,14 +81,15 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-#plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat zsh-autocomplete) 
-plugins=(macos autoswitch_virtualenv colored-man-pages eza gpg-agent last-working-dir safe-paste ssh tailscale thefuck tldr vi-mode zoxide brew python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat ) 
+#plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat zsh-autocomplete vi-mode) 
+plugins=(macos colored-man-pages eza gpg-agent last-working-dir safe-paste ssh tailscale thefuck tldr zoxide brew python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat  ) 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 alias help="navi"
 alias cd="z"
 alias cat="bat"
+alias c="bat --plain --plain"
 alias catp="bat --plain --plain"
  _EZA_TAIL=()
  _EZA_TAIL+=("--icons")
