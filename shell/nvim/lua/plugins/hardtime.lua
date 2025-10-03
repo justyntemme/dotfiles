@@ -1,7 +1,7 @@
 return {
   "m4xshen/hardtime.nvim",
   lazy = false,
-  dependencies = { "MonifTanjim/nui.nvim" },
+  dependencies = { "MunifTanjim/nui.nvim" },
   config = function()
     return {
       enabled_keys = {
