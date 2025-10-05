@@ -2,14 +2,15 @@ return {
   "m4xshen/hardtime.nvim",
   lazy = false,
   dependencies = { "MunifTanjim/nui.nvim" },
-  config = function()
+  opts = function()
     return {
-      enabled_keys = {
-        ["<Up>"] = true, -- Allow <Up> key
-        ["<Down>"] = true, -- Allow <Down> key
-        ["<Left>"] = true, -- Allow <Left> key
-        ["<Right>"] = true, -- Allow <Right> key
-      },
+      disable_mouse = false,
+      -- enabled_keys = {
+      --   ["<Up>"] = true, -- Allow <Up> key
+      --   ["<Down>"] = true, -- Allow <Down> key
+      --   ["<Left>"] = true, -- Allow <Left> key
+      --   ["<Right>"] = true, -- Allow <Right> key
+      -- },
     }
   end,
 }
