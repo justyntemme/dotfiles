@@ -4,13 +4,15 @@ spoon.ReloadConfiguration:start()
 
 spoon.ReloadConfiguration:bindHotkeys({ reloadConfiguration = { { "cmd", "ctrl", "shift" }, "R" } })
 
+require("hs.window.filter")
 -- Move Focus window up/down left/right & cycle for focus window
 hs.hotkey.bind({ "cmd", "shift" }, "9", "Left", function()
+	local wf = hs.window.filter
 	-- Always use false, false as the last two params, frontmost (dont ignore windows with other windows in front), strict
 	-- TODO improve window speed by giving it some windows
-	-- local ws = wf.new({ override = { visible = true, fullscreen = false, allowScreens = "-1,0", currentSpace = true } })
-	-- hs.window.filter.defaultCurrentSpace:focusWindowWest(nil, true, false)
-	-- hs.window.filter.focusWest(nil, true, false)
+	local ws = wf.new({ override = { visible = true, fullscreen = false, allowScreens = "-1,0", currentSpace = true } })
+	hs.window.filter.defaultCurrentSpace:focusWindowWest(nil, true, false)
+	--works	hs.window.filter.focusWest(nil, true, false)
 	--hs.window.focusWindowWest(nil,self:getWindows(),)
 end)
 hs.hotkey.bind({ "cmd", "shift" }, "0", "Right", function()
