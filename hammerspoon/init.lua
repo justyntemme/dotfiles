@@ -31,11 +31,9 @@ end)
 
 hs.hotkey.bind({ "cmd" }, "9", "Down", function()
 	currentSpaceFilter:focusWindowSouth(nil, true, false)
-	-- hs.window.focusSouth(nil, true, false)
 end)
 hs.hotkey.bind({ "cmd" }, "0", "Left", function()
 	currentSpaceFilter:focusWindowNorth(nil, true, false)
-	-- hs.window.focusNorth(nil, true, false)
 end)
 
 -- TODO: cycle ability
