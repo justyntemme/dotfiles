@@ -8,7 +8,6 @@ require("hs.window.filter")
 
 local currentSpaceFilter = hs.window.filter.defaultCurrentSpace
 hs.hotkey.bind({ "cmd", "shift" }, "9", "Left", function()
-	local wf = hs.window.filter
 	currentSpaceFilter:focusWindowWest(nil, true, false)
 end)
 hs.hotkey.bind({ "cmd", "shift" }, "0", "Right", function()
