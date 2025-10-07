@@ -7,17 +7,17 @@ spoon.ReloadConfiguration:bindHotkeys({ reloadConfiguration = { { "cmd", "ctrl",
 require("hs.window.filter")
 
 local currentSpaceFilter = hs.window.filter.defaultCurrentSpace
-hs.hotkey.bind({ "cmd", "shift" }, "9", "Left", function()
+hs.hotkey.bind({ "cmd", "shift" }, "[", "Left", function()
 	currentSpaceFilter:focusWindowWest(nil, true, false)
 end)
-hs.hotkey.bind({ "cmd", "shift" }, "0", "Right", function()
+hs.hotkey.bind({ "cmd", "shift" }, "]", "Right", function()
 	currentSpaceFilter:focusWindowEast(nil, true, false)
 end)
 
-hs.hotkey.bind({ "cmd" }, "9", "Down", function()
+hs.hotkey.bind({ "cmd" }, "[", "Down", function()
 	currentSpaceFilter:focusWindowSouth(nil, true, false)
 end)
-hs.hotkey.bind({ "cmd" }, "0", "Left", function()
+hs.hotkey.bind({ "cmd" }, "]", "Left", function()
 	currentSpaceFilter:focusWindowNorth(nil, true, false)
 end)
 hs.timer.doAfter(2, function()
