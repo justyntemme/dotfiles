@@ -3,6 +3,7 @@ bat
 navi
 zoxide
 eza
+k9s
 
 ## ZSH 
 oh-my-zsh (Plugins defined in ~/.zshrc)
