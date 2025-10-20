@@ -9,11 +9,11 @@ return {
   },
   config = function()
     require("org-roam").setup({
-      directory = "~/.org/org-roam/",
+      directory = "~/.config/org/org-roam/",
       -- optional
       agenda_on_quit = false,
       org_files = {
-        "~/.org/orgfiles/*.org",
+        "~/.config/org/orgfiles/*.org",
       },
     })
   end,

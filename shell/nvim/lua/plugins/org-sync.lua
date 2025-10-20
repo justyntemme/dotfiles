@@ -7,7 +7,7 @@ return {
   -- The config function calls the `setup` function from your plugin.
   config = function()
     require("org-sync").setup({
-      dir = "~/.org",
+      dir = "~/.config/org/",
     })
   end,
 }
