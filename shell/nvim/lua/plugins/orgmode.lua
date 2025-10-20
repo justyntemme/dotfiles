@@ -9,7 +9,7 @@ return {
       mappings = {
         global = {
           -- org_agenda = true,
-          org_capture = "gC",
+          --org_capture = "gc",
         },
       },
     })
