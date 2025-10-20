@@ -2,6 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 -- ~/.config/nvim/lua/config/keymaps.lua
+-- Remap the Snacks notification history
+vim.keymap.del("n", "<leader>n") -- Delete the default mapping
+
+vim.keymap.set("n", "<leader>nh", function()
+  require("snacks.picker").notifications()
+end, { desc = "Snacks Notifications" })
 
 -- Define a consistent scroll amount for a half page
 vim.keymap.set("n", "<C-d>", function()
