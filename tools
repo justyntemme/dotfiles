@@ -4,7 +4,7 @@ navi
 zoxide
 eza
 k9s
-
+direnv
 ## ZSH 
 oh-my-zsh (Plugins defined in ~/.zshrc)
 oh-my-posh
