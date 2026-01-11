@@ -10,6 +10,8 @@ return {
     require("orgmode").setup({
       org_agenda_files = "~/.config/org/**/*.org",
       org_default_notes_file = "~/.config/org/orgfiles/refile.org",
+      org_startup_indented = true, -- virtual indent for display
+      org_adapt_indentation = false, -- don't insert real spaces
       ui = {
         menu = {
           handler = function(data)
