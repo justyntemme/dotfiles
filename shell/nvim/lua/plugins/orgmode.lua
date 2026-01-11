@@ -6,6 +6,13 @@ return {
   event = "VeryLazy",
   config = function()
     local Menu = require("org-modern.menu")
+    -- Disable auto-insert of asterisks on Enter/o
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "org",
+      callback = function()
+        vim.opt_local.formatoptions:remove({ "o", "r" })
+      end,
+    })
 
     require("orgmode").setup({
       org_agenda_files = "~/.config/org/**/*.org",
