@@ -1,14 +1,9 @@
 return {
-  "folke/snacks.nvim", -- This name MUST match the original plugin
-  opts = function()
-    -- This function is called by LazyVim to get the options
-    -- It's great practice, especially if you later need to
-    -- require() other modules to build your config.
-    return {
-      ui = {
-        select = true,
-        input = true,
-      },
-    }
+  "folke/snacks.nvim",
+  opts = function(_, opts)
+    opts.ui = opts.ui or {}
+    opts.ui.select = true
+    opts.ui.input = true
+    return opts
   end,
 }

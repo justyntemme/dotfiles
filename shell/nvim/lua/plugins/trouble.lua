@@ -1,25 +1,32 @@
 return {
   "folke/trouble.nvim",
-  opts = function()
-    return {
-      modes = {
-        preview_float = {
-          mode = "diagnostics",
-          filter = { buf = 0 },
-          preview = {
-            type = "float",
-            relative = "editor",
-            border = "rounded",
-            title = "Preview",
-            title_pos = "center",
-            position = { 0, -2 },
-            size = { width = 0.3, height = 0.3 },
-            zindex = 200,
-          },
+  opts = function(_, opts)
+    opts.modes = opts.modes or {}
+    opts.modes.preview_float = {
+      mode = "diagnostics",
+      filter = { buf = 0 },
+      preview = {
+        type = "float",
+        relative = "editor",
+        border = "rounded",
+        title = "Preview",
+        title_pos = "center",
+        position = { 0, -2 },
+        size = { width = 0.3, height = 0.3 },
+        zindex = 200,
+      },
+    }
+    -- zlint mode for filtered diagnostics
+    opts.modes.zlint = {
+      mode = "diagnostics",
+      filter = {
+        any = {
+          { source = "zlint" },
         },
       },
     }
-  end, -- for default options, refer to the configuration section for custom setup.
+    return opts
+  end,
   cmd = "Trouble",
   keys = {
     {
@@ -51,6 +58,11 @@ return {
       "<leader>xQ",
       "<cmd>Trouble qflist toggle<cr>",
       desc = "Quickfix List (Trouble)",
+    },
+    {
+      "<leader>xz",
+      "<cmd>Trouble zlint toggle<cr>",
+      desc = "Zlint (Trouble)",
     },
   },
 }

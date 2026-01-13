@@ -1,9 +1,7 @@
 return {
   "nvimdev/dashboard-nvim",
-  opts = function()
-    return {
-      theme = "hyper",
-    }
-  end,
+  opts = {
+    theme = "hyper",
+  },
   dependencies = { { "nvim-tree/nvim-web-devicons" } },
 }
