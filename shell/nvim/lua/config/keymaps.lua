@@ -6,6 +6,8 @@
 
 local map = vim.keymap.set
 
+-- copy entire file into system clipboard
+map("n", "<leader>yA", 'ggVG"+y', { desc = "Yank whole file to clipboard" })
 -- State to remember which pane we are targeting
 _G.kitty_zig_target_id = nil
 
@@ -47,7 +49,7 @@ local function run_zig_in_kitty()
   local file = vim.fn.expand("%:p")
 
   -- 2. Command: Ctrl+C (to kill previous run) + zig run + Enter
-  local zig_cmd = "\x03" .. "zig run " .. file .. "\r"
+  local zig_cmd = "\x03" .. "zr " .. file .. "\r"
 
   -- 3. If we already have a target, send it immediately
   if _G.kitty_zig_target_id then
