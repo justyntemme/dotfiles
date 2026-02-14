@@ -5,7 +5,55 @@
 -- ~/.config/nvim/lua/config/keymaps.lua
 
 local map = vim.keymap.set
+-- delete marks at cursor
+local function delete_marks_at_cursor()
+  local line = vim.fn.line(".")
+  local col = vim.fn.col(".") -- 1-based
 
+  local names, seen = {}, {}
+
+  local function collect(list)
+    for _, m in ipairs(list) do
+      local name = (m.mark or ""):sub(2, 2) -- "'a" -> "a"
+      local pos = m.pos or {}
+      if name:match("^[a-zA-Z]$") and pos[2] == line and pos[3] == col and not seen[name] then
+        seen[name] = true
+        table.insert(names, name)
+      end
+    end
+  end
+
+  collect(vim.fn.getmarklist(0)) -- buffer-local marks
+  collect(vim.fn.getmarklist()) -- global/file marks
+
+  if #names == 0 then
+    vim.notify("No mark(s) at cursor", vim.log.levels.INFO)
+    return
+  end
+
+  vim.cmd("delmarks " .. table.concat(names))
+  vim.notify("Deleted mark(s): " .. table.concat(names, " "), vim.log.levels.INFO)
+end
+
+-- keymap for delete marks at cursor
+map("n", "<leader>mX", delete_marks_at_cursor, {
+  desc = "Delete mark(s) at cursor",
+  silent = true,
+})
+-- delete specific mark
+map("n", "<leader>mx", function()
+  local ch = vim.fn.getcharstr()
+  if not ch:match("^[a-zA-Z]$") then
+    vim.notify("Expected mark letter [a-zA-Z]", vim.log.levels.WARN)
+    return
+  end
+
+  vim.cmd("delmarks " .. ch)
+  vim.notify("Deleted mark: " .. ch, vim.log.levels.INFO)
+end, {
+  desc = "Delete mark by name",
+  silent = true,
+})
 -- copy entire file into system clipboard
 map("n", "<leader>yA", 'ggVG"+y', { desc = "Yank whole file to clipboard" })
 -- State to remember which pane we are targeting
