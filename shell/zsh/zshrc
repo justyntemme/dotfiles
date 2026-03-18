@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 
 # bindkey '^y' djvi-widget
 # User configuration
-fpath=(~/.zsh/functions $fpath)
+fpath=(~/.config/zsh/functions $fpath)
 autoload -Uz ${fpath[1]}/*(.:t)
 alias zbr='zig build run'
 alias sbr='sudo -v && zig build sign-run -Doptimize=ReleaseFast -Didentity=ADC2D51ECEA52752635545E86CD07FB8DA06AA6E'
