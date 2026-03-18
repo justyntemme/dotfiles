@@ -1,0 +1,1 @@
+rm main.go && pbpaste >> main.go && go build main.go

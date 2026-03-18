@@ -1,0 +1,1 @@
+sudo -v && zig build sign-run -Doptimize=ReleaseFast -Didentity=ADC2D51ECEA52752635545E86CD07FB8DA06AA6E

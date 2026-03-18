@@ -1,0 +1,4 @@
+case ":$PATH:" in
+  *:"$1":*) echo "already in PATH: $1" ;;
+  *) export PATH="$PATH:$1" ;;
+esac
