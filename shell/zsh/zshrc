@@ -1,4 +1,4 @@
-source ~/.pyenv/default/bin/activate
+#source ~/.pyenv/default/bin/activate
 fastfetch
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -82,10 +82,22 @@ ZSH_THEME=""
 # Add wisely, as too many plugins slow down shell startup.
 
 #plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat zsh-autocomplete vi-mode) 
-plugins=(macos colored-man-pages eza gpg-agent last-working-dir safe-paste ssh tailscale thefuck tldr zoxide brew python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat  ) 
+plugins=(macos zsh-deja-vu colored-man-pages eza gpg-agent last-working-dir safe-paste ssh tailscale thefuck tldr zoxide brew python golang dotenv kubectl helm git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat  ) 
 source $ZSH/oh-my-zsh.sh
 
+# bindkey '^y' djvi-widget
 # User configuration
+fpath=(~/.zsh/functions $fpath)
+autoload -Uz ${fpath[1]}/*(.:t)
+alias zbr='zig build run'
+alias sbr='sudo -v && zig build sign-run -Doptimize=ReleaseFast -Didentity=ADC2D51ECEA52752635545E86CD07FB8DA06AA6E'
+alias zr="zig run"
+alias pb="pbpaste > "
+alias pc="pbcopy < "
+alias v="rm main.go && pbpaste >> main.go && go build main.go"
+alias gdu="gdu-go"
+alias ssh="kitty +kitten ssh"
+alias gg="lazygit"
 alias help="navi"
 alias cd="z"
 alias cat="bat"
@@ -97,9 +109,9 @@ alias catp="bat --plain --plain"
  _EZA_TAIL+=("--git")
 alias vim="nvim"
 alias ls="eza -l ${_EZA_TAIL[@]}"
-export PATH="$PATH:$HOME/.scripts"
+export PATH="$PATH:$HOME/.scripts":$HOME/go/bin/
 # export MANPATH="/usr/local/man:$MANPATH"
-
+alias pyenv='_write_direnv_python_layout'
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -128,6 +140,24 @@ export PATH="$PATH:$HOME/.scripts"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(direnv hook zsh)"
 eval "$(navi widget zsh)" 
 eval "$(zoxide init zsh)"
 eval "$(oh-my-posh init zsh --config ~/.config/zsh/default.omp.json)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/justyntemme/.py/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/justyntemme/.py/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/justyntemme/.py/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/justyntemme/.py/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="$HOME/.local/bin:$PATH"
