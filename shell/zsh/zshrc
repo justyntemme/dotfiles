@@ -142,7 +142,6 @@ alias pyenv='_write_direnv_python_layout'
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(direnv hook zsh)"
 eval "$(navi widget zsh)" 
-eval "$(zoxide init zsh)"
 eval "$(oh-my-posh init zsh --config ~/.config/zsh/default.omp.json)"
 
 # >>> conda initialize >>>
@@ -161,3 +160,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH="$HOME/.local/bin:$PATH"
+eval "$(zoxide init zsh)"
