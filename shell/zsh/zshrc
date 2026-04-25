@@ -91,6 +91,8 @@ fpath=(
   $HOME/.config/zsh/functions 
   $fpath)
 autoload -Uz ${fpath[1]}/*(.:t)
+alias rm="trash"
+alias rmf="/bin/rm"
 alias zbr='zig build run'
 alias zr="zig run"
 alias pb="pbpaste > "
