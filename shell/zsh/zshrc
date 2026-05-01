@@ -91,6 +91,7 @@ fpath=(
   $HOME/.config/zsh/functions 
   $fpath)
 autoload -Uz ${fpath[1]}/*(.:t)
+alias gad="git ls-files --deleted | xargs git add"
 alias rm="trash"
 alias rmf="/bin/rm"
 alias zbr='zig build run'
