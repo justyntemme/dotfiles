@@ -1,3 +1,6 @@
+# install homebrew with the following commnand
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 tap "derailed/k9s"
 tap "jandedobbeleer/oh-my-posh"
 tap "olets/tap"
